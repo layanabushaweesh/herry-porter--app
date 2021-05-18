@@ -33,6 +33,14 @@ const client = new pg.Client(process.env.DATABASE_URL);
 app.get('/home' , renderHome)
 app.post('/favorite-character', saveCharacter)
 app.get('/character/my-fav-characters',renderFav)
+
+app.post('/character/:character_id' , showDetalis)
+app.put('/character/:character_id', updateQ)
+app.delete('/character/:character_id', deleteQ)
+// creating routs
+// app.post('/character/create', createCharacter)
+// app.get('/character/my-characters', showCreate)
+// app.get('/character/create' , renderCreate)
 // callback functions
 // -- WRITE YOUR CALLBACK FUNCTIONS FOR THE ROUTES HERE --
 function renderHome(req,res) {
@@ -64,6 +72,53 @@ function renderFav(req,res) {
     })).catch(error =>{console.log(error)})
     
 }
+function showDetalis(req,res) {
+    const id=req.params.character_id
+    const sql ='SELECT * FROM characters WHERE id=$1;'
+    const value =[id]
+    
+    client.query(sql,value).then((dataFromDB) =>{
+        res.render('detalis' , { datalis : dataFromDB.rows})
+    }).catch(error =>(console.log(error)))
+}
+
+function updateQ(req,res) {
+    const id =req.params.character_id
+    const{name,house,patronus,status,yearOfBirth} =req.body   
+    const sql ='UPDATE characters SET name=$1 house=$2 patronus=$3 is_alive=$4 yearOfBirth=$5 WHERE id=$6;'
+    const value=[name,house,patronus,status,yearOfBirth,id]
+    client.query(sql,value).then(()=>{
+        res.redirect(`/character/${id}`)
+    }).catch(error =>{console.log(error)})
+}
+function deleteQ(req,res) {
+    const id =req.params.character_id
+    const sql ='DELETE FROM characters WHERE id=$1'
+    const value =[id]
+    client.query(sql,value).then(()=>{
+        res.redirect('/character/my-fav-characters')
+    }).catch(error =>{console.log(error)})
+}
+
+// function createCharacter(req,res) {
+//     const {name,house,patronus,status} =req.body
+//     const sql ='INSERT INTO characters (name,house,patronus,is_alive,created_by) VALUES ($1,$2,$3,$4,$5)'
+//     const value =[name,house,patronus,status,'user']
+//     client.query(sql,value).then(()=>{
+//         res.redirect('/character/my-characters')
+//     }).catch(error =>{console.log(error)})
+// }
+// function showCreate(req,res) {
+//     const sql ='SELECT * FROM characters WHERE created_by=$1'
+//     const value=['user']
+//     client.query(sql,value).then((dataFromDB)=>{
+//         res.render('fav',{ fn : dataFromDB.rows})
+
+//     })
+// }
+// function renderCreate(req,res) {
+//     res.render('create-chara')
+// }
 // helper functions
 function Character(data) {
     

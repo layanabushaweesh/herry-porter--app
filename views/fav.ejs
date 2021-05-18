@@ -7,6 +7,7 @@
     <title>Document</title>
 </head>
 <body>
+    <%- include ('./layout/nav.ejs') %>
     
     <main>
         <section>
@@ -27,8 +28,14 @@
                 <h3>
                     <%=character.yearOfBirth%> 
                 </h3>
+                <!-- show detalis from id -->
+             <form action="/character/<%=character.id%>" method="POST">
+                <input type="submit" value="detalis">
+             </form>
              
            <% }) %>
+
+          
             
         </section>
     </main>

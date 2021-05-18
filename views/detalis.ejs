@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <body>
+        <%- include ('./layout/nav.ejs') %>
+        <main>
+            <section>
+                <% datalis.forEach(character =>{ %>
+                    <p>
+                        <%=character.name%>
+                    </p>
+                    <p>
+                        <%=character.house%>
+                    </p>
+                    <p>
+                        <%=character.patronus%>
+                    </p>
+                    <p>
+                        <%=character.alive%>
+                    </p>
+                    <img src="<%=character.image%>" alt="">
+                    <h3>
+                        <%=character.yearOfBirth%> 
+                    </h3>
+                   <form action="/character/<%=character.id%>?_method=UPDATE" method="POST">
+
+                    <input type="text"  name="name" value="<%=character.name%>">
+                    <input type="text"  name="house" value="<%=character.house%>">
+                    <input type="text"  name="patronus" value="<%=character.patronus%>">
+                    <select name="status">
+                        <% if(character.alive) {%>
+                            <option value="t">alive</option>
+                            <option value="f">dead</option>
+    
+                        <% } else{ %>
+                            <option value="f">dead</option>
+                            <option value="t">alive</option>
+                       <% } %>
+                    </select>
+                       
+                 
+                    
+                
+                <input type="text" name="yearOfBirth" value="<%=character.yearOfBirth%>">
+                 <input type="submit" value="update">
+                   </form>
+                  <form action="/character/<%=character.id%>?_method=DELETE" method="POST">
+                    <input type="submit" value="delet charachter">
+                  </form>
+               <% }) %>
+                
+            </section>
+        </main>
+</body>
+</html>
