@@ -1,45 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<%- include ('./layout/head.ejs') %>
+<%- include ('./layout/nav.ejs') %>
+
 <body>
-    <%- include ('./layout/nav.ejs') %>
     <main>
         <section>
-            <% characters.forEach(character =>{ %>
-                <p>
-                    <%=character.name%>
-                </p>
-                <p>
-                    <%=character.house%>
-                </p>
-                <p>
-                    <%=character.patronus%>
-                </p>
-                <p>
-                    <%=character.alive%>
-                </p>
-                <img src="<%=character.image%>" alt="">
-                <h3>
-                    <%=character.yearOfBirth%> 
-                </h3>
-                <form action="/favorite-character" method="POST">
-                    <input type="hidden" name="name" value="<%=character.name%>">
-                    <input type="hidden" name="house" value="<%=character.house%>">
-                    <input type="hidden" name="patronus" value="<%=character.patronus%>">
-                    <input type="hidden" name="alive" value="<%=character.alive%>">
-                    <input type="hidden" name="image" value="<%=character.image%>">
-                    <input type="hidden" name="yearOfBirth" value="<%=character.yearOfBirth%>">
-                    <input type="submit" value="favor character">
-                      
+            <%allData.forEach(data =>{%>
 
+                <p>
+                    <%=data.name%>
+                </p>
+                <p>
+                    <%=data.house%>
+                </p>
+                <p>
+                    <%=data.patronus%>
+                </p>
+                <p>
+                    <%=data.alive%>
+                </p>
+
+                <form action="/save" method="POST">
+                    <input type="hidden" name="name" value="<%=data.name%>">
+                    <input type="hidden" name="house" value="<%=data.house%>">
+                    <input type="hidden" name="patronus" value="<%=data.patronus%>">
+                    <input type="hidden" name="alive" value="<%=data.alive%>">
+                     <input type="submit" value="favor here">
                 </form>
-           <% }) %>
-            
+          <%  })%>
         </section>
     </main>
 </body>

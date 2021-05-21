@@ -1,42 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+
+    <%- include ('./layout/head.ejs') %>
     <%- include ('./layout/nav.ejs') %>
     
-    <main>
-        <section>
-            <% fav.forEach(character =>{ %>
-                <p>
-                    <%=character.name%>
-                </p>
-                <p>
-                    <%=character.house%>
-                </p>
-                <p>
-                    <%=character.patronus%>
-                </p>
-                <p>
-                    <%=character.alive%>
-                </p>
-                <img src="<%=character.image%>" alt="">
-                <h3>
-                    <%=character.yearOfBirth%> 
-                </h3>
-                <!-- show detalis from id -->
-             <form action="/character/<%=character.id%>" method="POST">
-                <input type="submit" value="detalis">
-             </form>
-             
-           <% }) %>
 
-          
-            
+<body>
+   <main>
+        <section>
+            <% fav.forEach(data =>{ %>
+
+                <p>
+                    <%=data.name%>
+                </p>
+                <p>
+                    <%=data.house%>
+                </p>
+                <p>
+                    <%=data.patronus%>
+                </p>
+                <p>
+                    <%=data.alive%>
+                </p>
+
+                <form action="/character/<%=data.id%>" method="POST">
+                 <input type="submit" value="show detalis here">
+                </form>
+          <%  })%>
         </section>
     </main>
 </body>

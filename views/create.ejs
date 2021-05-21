@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include ('./layout/head.ejs') %>
+    <%- include ('./layout/nav.ejs') %>
+    
+<body>
+    
+    <form action="/character/create" method="POST">
+        <input type="text" name="name" >
+        <input type="text" name="house">
+        <input type="text" name="patronus" >
+        <select name="staus"> 
+<option value="t">alive</option>
+<option value="f">dead</option>
+         
+            
+
+        </select>
+        <input type="submit" value="create charachter">
+</body>
+</html>
