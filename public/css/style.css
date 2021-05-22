@@ -1,17 +1,6 @@
-body{
-    background-color: brown;
-}
-main section {
+main{
     display: flex;
-    justify-content: space-around ;
+    justify-content: space-between;
     flex-wrap: wrap;
-}
-ul{
-    display: flex;
-    justify-content: flex-end;
-    padding: 20px;
-
-}
-ul li{
-    margin-left: 20px;
+    background-color: crimson;
 }

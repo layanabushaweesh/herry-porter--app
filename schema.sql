@@ -1,5 +1,5 @@
 CREATE TABLE IF NOT EXISTS
-users (
+mytable (
  id SERIAL PRIMARY KEY,
  name VARCHAR(255),
  house VARCHAR(255),

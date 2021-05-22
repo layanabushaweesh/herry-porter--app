@@ -1,50 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
-    <%- include ('./layout/head.ejs') %>
-    <%- include ('./layout/nav.ejs') %>
-    
+<%- include ('./layout/head.ejs') %>
+
+    <%- include ('./layout/nav.ejs') %>>
+
 <body>
     <main>
         <section>
-            <% detalis.forEach(data =>{%>
-
-                <p>
-                    <%=data.name%>
-                </p>
-                <p>
-                    <%=data.house%>
-                </p>
-                <p>
-                    <%=data.patronus%>
-                </p>
-                <p>
-                    <%=data.alive%>
-                </p>
-
-                <form action="/character/<%=data.id%>?_method=PUT" method="POST">
-                    <input type="text" name="name" value="<%=data.name%>">
-                    <input type="text" name="house" value="<%=data.house%>">
-                    <input type="text" name="patronus" value="<%=data.patronus%>">
-                    <select name="staus"> 
-                        <% if(data.alive){ %>
+            <%detalis.forEach(data =>{%>
+<h1>
+    <%=data.name%>
+</h1>
+<h2>
+    <%=data.house%>
+</h2>
+<h3>
+    <%=data. patronus%>
+</h3>
+<h4>
+    <%=data.alive%>
+</h4>
+<form action="/character/<%=data.id%>?_method=put" method="POST">
+    <input type="text" name="name" value="<%=data.name%>">
+    <input type="text" name="house" value="<%=data.house%>">
+    <input type="text" name="patronus" value="<%=data. patronus%>">
+<select name="status">
+<%if(data.alive){%>
 <option value="t">alive</option>
 <option value="f">dead</option>
-                       <% } else {%>
-                        <option value="f">dead</option>
-                        <option value="t">alive</option>
-                      <% } %>
-                        
-
-                    </select>
+<%}else{%>
+    <option value="t">alive</option>
+    <option value="f">dead</option>
+<%} %>
 <input type="submit" value="update here">
+</select>
 
-                </form>
-                <form action="/character/<%=data.id%>?_method=delete " method="POST">
-                    <input type="submit" value="delete here">
-                </form>
-                
 
-          <%  })%>
+
+</form>
+<form action="/character/<%=data.id%>?_method=delete" method="POST">
+    <input type="submit" value="delete here">
+</form>
+           <% })%>
         </section>
     </main>
 </body>

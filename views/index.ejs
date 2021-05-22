@@ -1,34 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include ('./layout/head.ejs') %>
-<%- include ('./layout/nav.ejs') %>
-
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 <body>
+    <%- include ('./layout/head.ejs') %>
+
+    <%- include ('./layout/nav.ejs') %>
     <main>
         <section>
             <%allData.forEach(data =>{%>
-
-                <p>
-                    <%=data.name%>
-                </p>
-                <p>
-                    <%=data.house%>
-                </p>
-                <p>
-                    <%=data.patronus%>
-                </p>
-                <p>
-                    <%=data.alive%>
-                </p>
-
-                <form action="/save" method="POST">
-                    <input type="hidden" name="name" value="<%=data.name%>">
-                    <input type="hidden" name="house" value="<%=data.house%>">
-                    <input type="hidden" name="patronus" value="<%=data.patronus%>">
-                    <input type="hidden" name="alive" value="<%=data.alive%>">
-                     <input type="submit" value="favor here">
-                </form>
-          <%  })%>
+<h1>
+    <%=data.name%>
+</h1>
+<h2>
+    <%=data.house%>
+</h2>
+<h3>
+    <%=data. patronus%>
+</h3>
+<h4>
+    <%=data.alive%>
+</h4>
+<form action="/save" method="POST">
+    <input type="hidden" name="name" value="<%=data.name%>">
+    <input type="hidden" name="house" value="<%=data.house%>">
+    <input type="hidden" name="patronus" value="<%=data. patronus%>">
+    <input type="hidden" name="alive" value="<%=data.alive%>">
+<input type="submit" value="favor here">
+</form>
+           <% })%>
         </section>
     </main>
 </body>
